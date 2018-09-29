@@ -8,7 +8,7 @@ int main(void)
     {
         n = get_int("Input Height:");
     }
-    while(n<1 || n >= 24);
+    while(n<0 || n >= 24);
 
     for (int i=1; i<=n; i++)
     {
