@@ -9,18 +9,18 @@ int main(void)
     {
         n = get_int("Input Height:");
     }
-    while(n<0 || n>=24);
+    while (n < 0 || n >= 24);
 
     //Loop to print the pyrimid
-    for (int i=1; i<=n; i++)
+    for (int i = 1; i <= n; i++)
     {
         //print space before the left pyrimid
-        for (int j=n-i; j>0;j--)
+        for (int j = n-i ; j > 0; j--)
         {
             printf(" ");
         }
         //print # for the left pyrimid
-        for (int k=0; k<i; k++)
+        for (int k = 0; k < i; k++)
         {
             printf("#");
         }
@@ -28,7 +28,7 @@ int main(void)
         printf("  ");
 
         //print # in the right
-        for (int l=0; l<i; l++)
+        for (int l = 0; l < i; l++)
         {
             printf("#");
         }
