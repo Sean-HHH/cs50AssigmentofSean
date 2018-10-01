@@ -31,10 +31,15 @@ int main(int argc, string argv[])
     printf("ciphertext:");
     for (int i = 0, j = 0; i < pl; i++ )
     {
+        if (j == kl)
+        {
+            j = 0;
+        }
         //print alphabet, upper, lower case, others than alphabet repectively
         if (isupper(p[i]))
         {
             printf("%c", (p[i] - 65 + toupper(k[j % kl ]) - 65 ) % 26 + 65);
+            if(j < kl)
             j++;
         }
         else if (islower(p[i]))
