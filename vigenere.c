@@ -34,12 +34,12 @@ int main(int argc, string argv[])
         //print alphabet, upper, lower case, others than alphabet repectively
         if (isupper(p[i]))
         {
-            printf("%c", (p[i] - 65 + k[j % kl ] - 65 ) % 26 + 65);
+            printf("%c", (p[i] - 65 + toupper(k[j % kl ]) - 65 ) % 26 + 65);
             j++;
         }
         else if (islower(p[i]))
         {
-            printf("%c", (p[i] - 97 + k[j % kl ] - 97 ) % 26 + 97);
+            printf("%c", (p[i] - 97 + toupper(k[j % kl ]) - 65 ) % 26 + 97);
             j++;
         }
         else
