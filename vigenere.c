@@ -14,12 +14,14 @@ int main(int argc, string argv[])
     //must be single line command
     if( argc != 2 )
     {
+        printf("you are wrong!");
         return 1;
     }
     //make sure the key must be alphabetical
     for (int i = 0; i < kl; i++ )
-    {    if(!isalpha(argv[1][i]))
+    {    if(isalpha(argv[1][i]) == 0)
         {
+            printf("you are wrong!");
             return 1;
         }
     }
