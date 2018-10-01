@@ -51,7 +51,7 @@ int main(int argc, string argv[])
                 printf("%c", text[i]);
             }
         }
-        printf("\n");
-        return 0;
+    printf("\n");
+    return 0;
     }
 }
