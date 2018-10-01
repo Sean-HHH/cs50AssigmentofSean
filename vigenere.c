@@ -18,10 +18,11 @@ int main(int argc, string argv[])
     }
     //make sure the key must be alphabetical
     for (int i = 0; i < kl; i++ )
-        if(!isalpha(argv[1][i]))
+    {    if(!isalpha(argv[1][i]))
         {
             return 1;
         }
+    }
 
     //get plain text string from user
     p = get_string("Plain text:");
