@@ -28,7 +28,7 @@ int main(int argc, string argv[])
     int pl = strlen(p);
 
 //Print ciphered char
-    printf("cipheretext:");
+    printf("ciphertext:");
     for (int i = 0, j = 0; i < pl; i++ )
     {
         //print alphabet, upper, lower case, others than alphabet repectively
