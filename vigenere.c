@@ -12,7 +12,7 @@ int main(int argc, string argv[])
     int kl = strlen(k);
 
     //must be single line command
-    if( argc != 2 )
+    if( argc != 2 || kl <= 0)
     {
         printf("you are wrong!");
         return 1;
