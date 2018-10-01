@@ -49,7 +49,7 @@ int main(int argc, string argv[])
         }
         else
         {
-            printf("p[i]");
+            printf("%c",p[i]);
         }
     }
     printf("\n");
