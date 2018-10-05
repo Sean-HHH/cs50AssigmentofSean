@@ -71,6 +71,7 @@ int frequency(string note)
     {
         freq = freq / (pow(2,(1/12)));
     }
+    return round(freq);
 }
 
 // Determines whether a string represents a rest
