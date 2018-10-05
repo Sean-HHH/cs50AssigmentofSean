@@ -19,36 +19,36 @@ int duration(string fraction)
 // Calculates frequency (in Hz) of a note
 int frequency(string note)
 {
-    int octave = note[strlen(note) - 1];
+    int octave = note[strlen(note) - 1] - '0';
     double freq = 0.0;
     //Set baseline of A4
     if (note[0] == 'A' )
     {
-        freq = 440;
+        freq = 440.0;
     }
     else if(note[0] == 'B')
     {
-        freq = 440 * (pow( 2.0, (1 / 12)));
+        freq = 440.0 * (pow( 2.0, (1.0 / 12.0)));
     }
     else if(note[0] == 'C')
     {
-        freq = 440 / (pow( 2.0, (9 / 12)));
+        freq = 440.0 / (pow( 2.0, (9.0 / 12.0)));
     }
     else if(note[0] == 'D')
     {
-        freq = 440 / (pow( 2.0, (7 / 12)));
+        freq = 440.0 / (pow( 2.0, (7.0 / 12.0)));
     }
     else if(note[0] == 'E')
     {
-        freq = 440 / (pow( 2.0, (5 / 12)));
+        freq = 440.0 / (pow( 2.0, (5.0 / 12.0)));
     }
     else if(note[0] == 'F')
     {
-        freq = 440 / (pow( 2.0, (4 / 12)));
+        freq = 440.0 / (pow( 2.0, (4.0 / 12.0)));
     }
     else if(note[0] == 'G')
     {
-        freq = 440 / (pow( 2.0, (2 / 12)));
+        freq = 440.0 / (pow( 2.0, (2.0 / 12.0)));
     }
 
     //set rules when moving octave
@@ -67,11 +67,11 @@ int frequency(string note)
     //support # & b
     if(note[1] == '#')
     {
-        freq = freq * (pow(2,(1/12)));
+        freq = freq * (pow(2.0, (1.0 / 12.0)));
     }
     else if(note[1] == 'b')
     {
-        freq = freq / (pow(2,(1/12)));
+        freq = freq / (pow(2.0, (1.0 / 12.0)));
     }
     int result = round(freq);
     return result;
