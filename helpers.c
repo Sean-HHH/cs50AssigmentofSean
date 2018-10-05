@@ -8,12 +8,12 @@
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
 {
-    //convert numberator and denominatoe as int
-    int numerator = fraction[0];
-    int denominator = fraction[2];
+    //convert numberator and denominator as int
+    int numerator = fraction[0] - '0';
+    int denominator = fraction[2] - '0';
 
     //assume text as eights notes
-    return (8 / denominator) * numerator;
+    return (8 / denominator ) * numerator;
 }
 
 // Calculates frequency (in Hz) of a note
@@ -73,7 +73,8 @@ int frequency(string note)
     {
         freq = freq / (pow(2,(1/12)));
     }
-    return round(freq);
+    int result = round(freq);
+    return result;
 }
 
 // Determines whether a string represents a rest
