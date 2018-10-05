@@ -28,7 +28,7 @@ int frequency(string note)
     }
     else if(note[0] == 'B')
     {
-        freq = 440.0 * (pow( 2.0, (1.0 / 12.0)));
+        freq = 440.0 * (pow( 2.0, (2.0 / 12.0)));
     }
     else if(note[0] == 'C')
     {
