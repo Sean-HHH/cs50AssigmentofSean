@@ -1,8 +1,9 @@
 // Helper functions for music
 
 #include <cs50.h>
-
+#include <math.h>
 #include "helpers.h"
+#include <string.h>
 
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
@@ -18,33 +19,34 @@ int duration(string fraction)
 // Calculates frequency (in Hz) of a note
 int frequency(string note)
 {
-    float freq = 0.0;
+    int octave = note[strlen(note) - 1];
+    double freq = 0.0;
     //Set baseline of A4
-    if note(0) == "A"
+    if (note[0] == 'A' )
     {
         freq = 440;
     }
-    else if(note(0) = "B")
+    else if(note[0] == 'B')
     {
         freq = 440 * (pow( 2.0, (1 / 12)));
     }
-    else if(note(0) = "C")
+    else if(note[0] == 'C')
     {
         freq = 440 / (pow( 2.0, (9 / 12)));
     }
-    else if(note(0) = "D")
+    else if(note[0] == 'D')
     {
         freq = 440 / (pow( 2.0, (7 / 12)));
     }
-    else if(note(0) = "E")
+    else if(note[0] == 'E')
     {
         freq = 440 / (pow( 2.0, (5 / 12)));
     }
-    else if(note(0) = "F")
+    else if(note[0] == 'F')
     {
         freq = 440 / (pow( 2.0, (4 / 12)));
     }
-    else if(note(0) = "G")
+    else if(note[0] == 'G')
     {
         freq = 440 / (pow( 2.0, (2 / 12)));
     }
@@ -63,11 +65,11 @@ int frequency(string note)
             freq /= 2;
         }
     //support # & b
-    if(note[1] == "#")
+    if(note[1] == '#')
     {
         freq = freq * (pow(2,(1/12)));
     }
-    else if(note[1] == "b")
+    else if(note[1] == 'b')
     {
         freq = freq / (pow(2,(1/12)));
     }
@@ -77,9 +79,8 @@ int frequency(string note)
 // Determines whether a string represents a rest
 bool is_rest(string s)
 {
-    if
+    if(s[0] == '\0')
     {
-        s[i] == "\0"
         return true;
     }
     else
