@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
     //determine new dimension
     newbi.biWidth = bi.biWidth * n;
-    newbi.biHeight = bi.biHeight * n;
+    newbi.biHeight = abs(bi.biHeight) * n;
 
     //determine new and old padding
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
