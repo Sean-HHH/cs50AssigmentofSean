@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     //determine the new size
     newbi.biSizeImage = (sizeof(RGBTRIPLE) * newbi.biWidth + newpadding ) * abs(newbi.biHeight);
-    newbf.bfSize = bf.bfSize + newbi.biSizeImage - bi.biSizeImage;
+    newbf.bfSize = newbi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&newbf, sizeof(BITMAPFILEHEADER), 1, outptr);
@@ -85,7 +85,8 @@ int main(int argc, char *argv[])
     // rewrite for each row
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        RGBTRIPLE pixels[n];
+        RGBTRIPLE pixels[(newbi.biWidth - 1)];
+        int x = 0;
 
         // for each pixels
         for (int j = 0; j < bi.biWidth; j++)
@@ -99,17 +100,21 @@ int main(int argc, char *argv[])
             //rewrite n times to arrays
             for(int k = 0; k < n; k++)
             {
-                pixels[k] = triple;
+                pixels[x] = triple;
+                x++;
             }
         }
+
+        //do something about the counter hopefully will lead to the answer
+        x = 0;
 
         //repeat the rows for n times
         for (int l = 0; l < n; l++)
         {
             //rewrite pixels to a row in the outfile
-            for (int m = 0; m < n; m++)
+            for (int m = 0; m < newbi.biWidth; m++)
             {
-                fwrite(&pixels[m], sizeof(RGBTRIPLE), 1, outptr);
+                fwrite(&pixels[x], sizeof(RGBTRIPLE), 1, outptr);
             }
 
             //adding the padding
