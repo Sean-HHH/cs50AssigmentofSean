@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
             for (int m = 0; m < newbi.biWidth; m++)
             {
                 fwrite(&pixels[x], sizeof(RGBTRIPLE), 1, outptr);
+                x++;
             }
 
             //adding the padding
