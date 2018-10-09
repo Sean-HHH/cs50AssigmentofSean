@@ -14,12 +14,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    //inputs of resizing factor
-    int factor = atoi(argv[1]);
+    //inputs of resizing n
+    int n = atoi(argv[1]);
 
-    if (factor < 0 || factor > 100)
+    if (n < 0 || n > 100)
     {
-        fprintf(stderr, "invalid factor\n");
+        fprintf(stderr, "invalid n\n");
         return 1;
     }
 
@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
     }
 
     //determine new dimension
-    newbi.biWidth = bi.biWidth * factor;
-    newbi.biHeight = bi.biHeight * factor;
+    newbi.biWidth = bi.biWidth * n;
+    newbi.biHeight = bi.biHeight * n;
 
     //determine new and old padding
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     // rewrite for each row
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        RGBTRIPLE pixels[factor];
+        RGBTRIPLE pixels[n];
 
         // for each pixels
         for (int j = 0; j < bi.biWidth; j++)
@@ -97,23 +97,23 @@ int main(int argc, char *argv[])
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
             //rewrite n times to arrays
-            for(int k = 0; k < factor; k++)
+            for(int k = 0; k < n; k++)
             {
                 pixels[k] = triple;
             }
         }
 
         //repeat the rows for n times
-        for (int l = 0; l < factor; l++)
+        for (int l = 0; l < n; l++)
         {
             //rewrite pixels to a row in the outfile
-            for (int m = 0; m < factor; m++)
+            for (int m = 0; m < n; m++)
             {
                 fwrite(&pixels[m], sizeof(RGBTRIPLE), 1, outptr);
             }
 
             //adding the padding
-            for (int k = 0; k < newpadding; k++)
+            for (int o = 0; o < newpadding; o++)
             {
                 fputc(0x00, outptr);
             }
