@@ -48,11 +48,13 @@ int main(int argc, char *argv[])
     BITMAPFILEHEADER bf;
     fread(&bf, sizeof(BITMAPFILEHEADER), 1, inptr);
     BITMAPFILEHEADER newbf;
+    newbf = bf;
 
     // read infile's BITMAPINFOHEADER
     BITMAPINFOHEADER bi;
     fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
     BITMAPINFOHEADER newbi;
+    newbi = bi;
 
     // ensure infile is (likely) a 24-bit uncompressed BMP 4.0
     if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
@@ -66,7 +68,7 @@ int main(int argc, char *argv[])
 
     //determine new dimension
     newbi.biWidth = bi.biWidth * n;
-    newbi.biHeight = abs(bi.biHeight) * n;
+    newbi.biHeight = bi.biHeight* n;
 
     //determine new and old padding
     int padding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
@@ -85,9 +87,7 @@ int main(int argc, char *argv[])
     // rewrite for each row
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
     {
-        RGBTRIPLE pixels[(newbi.biWidth - 1)];
-        int x = 0;
-
+        RGBTRIPLE pixels[(newbi.biWidth)];
         // for each pixels
         for (int j = 0; j < bi.biWidth; j++)
         {
@@ -97,25 +97,20 @@ int main(int argc, char *argv[])
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
-            //rewrite n times to arrays
-            for(int k = 0; k < n; k++)
-            {
-                pixels[x] = triple;
-                x++;
-            }
+            //rewrite pixels to arrays
+            pixels[j] = triple;
         }
-
-        //do something about the counter hopefully will lead to the answer
-        x = 0;
 
         //repeat the rows for n times
         for (int l = 0; l < n; l++)
         {
-            //rewrite pixels to a row in the outfile
-            for (int m = 0; m < newbi.biWidth; m++)
+            //rewrite pixels n times to a row in the outfile
+            for (int m = 0; m < bi.biWidth; m++)
             {
-                fwrite(&pixels[x], sizeof(RGBTRIPLE), 1, outptr);
-                x++;
+                for (int k = 0; k < n; k++)
+                {
+                    fwrite(&pixels[m], sizeof(RGBTRIPLE), 1, outptr);
+                }
             }
 
             //adding the padding
